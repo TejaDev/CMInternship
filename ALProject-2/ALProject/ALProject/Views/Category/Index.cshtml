@@ -1,0 +1,28 @@
+﻿@model ALProject.Models.CategoryModel
+
+<h2>Category Index</h2>
+
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table>
+    <tr>
+        <th width="150">@Html.DisplayNameFor(model => model.CategoryCollection[0].CategoryName)</th>
+        <th width="150">Link</th>
+    </tr>
+
+    @*use foreach to generate this row once for every row in model*@
+
+    @foreach (var item in Model.CategoryCollection)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID })
+                | Details
+            </td>
+            <td>@Html.HiddenFor(modelItem => item.CategoryID)</td>
+        </tr>
+    }
+</table>
+

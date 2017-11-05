@@ -1,0 +1,42 @@
+﻿@model ALProject.ViewModels.SpecCategoryDescriptionViewModel
+@{
+    ViewBag.Title = "AccessoryList";
+}
+
+<h2>AccessoryList for @Html.DisplayFor(model => model.SpecViewModel.SpecCollection[0].SpecName)</h2>
+<h4>Position: 
+@foreach (var item in Model.PositionViewModel.PositionCollection)
+{
+
+        @Html.DisplayFor(modelitem => item.PositionName)
+        @Html.Raw(" ")
+}
+</h4>
+    
+<h4>Status:
+    @foreach (var item in Model.StatusViewModel.StatusCollection)
+    {
+
+        @Html.DisplayFor(modelitem => item.StatusName)
+        @Html.Raw(" ")
+    }
+</h4>
+
+<table>
+<tr>
+    <th width="150">@Html.DisplayNameFor(model => Model.CategoryViewModel.CategoryCollection[0].CategoryName)</th>
+    <th width="150">@Html.DisplayNameFor(model => Model.DescriptionViewModel.DescriptionCollection[0].DescriptionName)</th>
+</tr>
+
+@foreach (var item in Model.CategoryDescriptionCollection)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelitem => item.CategoryName)</td>
+        <td>@Html.DisplayFor(modelitem => item.DescriptionName)</td>
+    </tr>
+}
+
+</table>
+<br>
+<br>
+@Html.ActionLink("Change Accessory List", "ChangeAccessoryList", new { id = Model.SpecViewModel.SpecCollection[0].SpecID, mode = "redirect" })

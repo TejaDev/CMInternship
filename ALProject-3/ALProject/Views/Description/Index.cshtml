@@ -1,0 +1,30 @@
+﻿@model ALProject.Models.DescriptionModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Description Index</h2>
+
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table>
+    <tr>
+        <th width="150">@Html.DisplayNameFor(model => model.DescriptionCollection[0].DescriptionName)</th>
+        <th width="150">Link</th>
+    </tr>
+
+    @*use foreach to generate this row once for every row in model*@
+
+    @foreach (var item in Model.DescriptionCollection)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.DescriptionName)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DescriptionID })
+            </td>
+            <td>@Html.HiddenFor(modelItem => item.DescriptionID)</td>
+        </tr>
+    }
+</table>

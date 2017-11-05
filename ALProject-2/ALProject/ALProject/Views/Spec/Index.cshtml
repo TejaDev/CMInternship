@@ -1,0 +1,31 @@
+﻿ @model ALProject.Models.SpecModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spec Index</h2>
+
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table>
+    <tr>
+        <th width="150">@Html.DisplayNameFor(model => model.SpecCollection[0].SpecName)</th>
+        <th width="150">Link</th>
+    </tr>
+
+    @*use foreach to generate this row once for every row in model*@
+
+    @foreach (var item in Model.SpecCollection)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.SpecName)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SpecID })
+                | Details
+            </td>
+            <td>@Html.HiddenFor(modelItem => item.SpecID)</td>
+        </tr>
+    }
+</table>

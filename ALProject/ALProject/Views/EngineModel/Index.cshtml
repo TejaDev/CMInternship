@@ -1,0 +1,31 @@
+﻿@model ALProject.Models.EngineModelModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Model Index</h2>
+
+
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table>
+    <tr>
+        <th width="150">@Html.DisplayNameFor(model => model.ModelCollection[0].ModelName)</th>
+        <th width="150">Link</th>
+    </tr>
+
+    @*use foreach to generate this row once for every row in model*@
+
+    @foreach (var item in Model.ModelCollection)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ModelName)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ModelID })
+                | Details
+            </td>
+            <td>@Html.HiddenFor(modelItem => item.ModelID)</td>
+        </tr>
+    }
+</table>

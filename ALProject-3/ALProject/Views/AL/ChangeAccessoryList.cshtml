@@ -1,0 +1,34 @@
+﻿@model ALProject.ViewModels.SpecCategoryDescriptionViewModel
+@{
+    ViewBag.Title = "ChangeAccessoryList2";
+}
+
+<h2>Change Accessory List</h2>
+
+<body>
+@using (Html.BeginForm())
+{
+    <table>
+        @Html.HiddenFor(model => Model.SpecViewModel.SpecCollection[0].SpecID)
+        <tr>
+            <th width="150">@Html.DisplayNameFor(model => Model.CategoryDescriptionCollection[0].CategoryName)</th>
+            <th width="150">@Html.DisplayNameFor(model => Model.CategoryDescriptionCollection[0].DescriptionName)</th>
+        </tr>
+
+        @for (int index = 0; index < Model.dict.Count; index++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => x.dict.ElementAt(index).Key)</td>
+                <td>
+                    @Html.DropDownListFor(x => x.DDLSelectIDs[index],
+                      Model.dict.ElementAt(index).Value,
+                      new { id = "ddlAccessoryList{0}" })
+                </td>
+            </tr>
+        }
+       
+
+    </table>
+    <input type="submit" value="Match" />
+}
+</body>

@@ -1,0 +1,12 @@
+﻿@model ALProject.ViewModels.SpecCategoryDescriptionViewModel
+<h2>Matching Spec List</h2>    
+<table>
+@foreach (var item in Model.SpecViewModel.SpecCollection)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.SpecName)</td>
+        <td>@Html.HiddenFor(modelItem => item.SpecID)</td>
+        <td>@Html.ActionLink("Accessory List", "AccessoryList", new { id = item.SpecID })</td>
+    </tr>
+}
+</table>

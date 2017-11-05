@@ -1,0 +1,69 @@
+﻿@model ALProject.Models.SpecModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+
+        <tr>
+
+        
+
+            <td>@Html.DisplayNameFor(model => model.SpecCollection[0].ModelID)</td>
+
+
+            <td>@Html.DropDownList("ModelList")</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.SpecCollection[0].SpecName)</td>
+
+
+            <td>@Html.TextBoxFor(model => model.SpecCollection[0].SpecName, new { required = "required" })</td>
+        </tr>
+
+     </table>
+
+    <p></p>
+
+    <p></p>
+
+    @*<form>*@
+        <tr>
+            Position :
+            
+            <input type="checkbox" name="Position0" value="Single"> Single
+            <input type="checkbox" name="Position1" value="Left"> Left
+            <input type="checkbox" name="Position2" value="Right"> Right
+            <input type="checkbox" name="Position3" value="Front"> Front
+            <input type="checkbox" name="Position4" value="Rear"> Rear
+        </tr>
+    <br
+        >
+        @*</form>
+        <form>*@
+            <tr>
+                Status :
+               
+                 <input type="checkbox" name="Status1" value="New">   New
+                <input type="checkbox" name="Status2" value="Rebuilt"> Rebuilt
+            </tr>
+        @*</form>*@
+
+        <p></p>
+
+<p></p>
+
+
+
+<input type="submit" value="Create New" />
+}
+
+<p></p>
+<p></p>
+@Html.ActionLink("Back to List", "Index")
+

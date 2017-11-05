@@ -1,0 +1,33 @@
+﻿@model ALProject.Models.EngineModelModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+
+        <tr>
+
+            <td>@Html.DisplayNameFor(model => model.ModelCollection[0].ModelName)</td>
+
+
+            <td>@Html.TextBoxFor(model => model.ModelCollection[0].ModelName, new { required = "required" })</td>
+        </tr>
+
+    </table>
+
+    <p></p>
+
+    <p></p>
+
+
+    <input type="submit" value="Create New" />
+}
+
+  <p></p>
+  <p></p>
+            @Html.ActionLink("Back to List", "Index")
+

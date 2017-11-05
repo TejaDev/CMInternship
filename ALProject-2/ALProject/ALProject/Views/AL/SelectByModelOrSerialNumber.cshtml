@@ -1,0 +1,72 @@
+﻿
+@model ALProject.ViewModels.SerialNumberEngineModelSpec
+
+@{
+    ViewBag.Title = "SelectByModelOrSerialNumber";
+}
+
+<h2>Search By Serial Number Or Select By Model</h2>
+
+@using (@Html.BeginForm("SearchWithSerialNumber", "AL"))
+{
+    <span>
+        Enter Serial Number :
+    </span>
+            <div style="color:red" id="ErrMsg">@TempData["SerialNumberError"]</div>
+            <br>
+            @Html.TextBox("SerialNumber")
+            <br>
+            <br>    
+
+            <input type="submit" value="Search">
+}
+
+
+<hr width="300" size="1">
+
+    <body onload="UpdateDOM();">
+        @*<div align="center">*@
+            <table>
+                <tr>
+                    <td>Select a Model:</td>
+                    <td>
+                        @Html.DropDownListFor(x => x.EngineModelViewModel.SelectModelID,
+                                    Model.EngineModelViewModel.ModelSelectList, "Select a Model",
+                                    new { onchange = "GetSpecsFor();", id = "ddlEngineModel" })
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+            <span id="SpecDDL">Select a Model for Spec List</span>
+
+            @*</div>*@
+
+                <script>
+                    function UpdateDOM() {
+                        var ddlEngineModel = document.getElementById("ddlEngineModel");
+                        //alert(ddlEngineModel.innerHTML);
+                        ddlEngineModel[0].setAttribute("value", "0");
+                        //alert(ddlEngineModel.innerHTML);
+                    }
+
+                    function GetSpecsFor() {
+                        var SelectModelID = jQuery("#ddlEngineModel").val();
+                        //alert("Selected ModelID = " + SelectModelID);
+
+                        jQuery.ajax(
+                            {
+                                url: "/AL/SelectByModelOrSerialNumber/",
+                                method: "POST",
+                                data: { ModelID: SelectModelID }
+
+                            }).done(function (SpecDDLHtmlResult) { jQuery("#SpecDDL").html(SpecDDLHtmlResult); })
+                            .fail(function (jqXHR, textStatus, errorThrown)
+                            { alert(jqXHR + " " + textStatus + " " + errorThrown); });
+
+                    }
+
+
+                </script>
+
+</body>
+

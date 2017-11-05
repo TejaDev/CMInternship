@@ -1,0 +1,45 @@
+﻿@model ALProject.ViewModels.SerialNumberEngineModelSpec
+
+
+<body onload="UpdateDOM();">
+    <table>
+        <tr>
+            <td>Select a Spec :</td>
+            <td>
+                @Html.DropDownListFor(s => s.SpecViewModel.SelectSpecID,
+                                    Model.SpecViewModel.SpecSelectList, "Select a Spec",
+                                    new { onchange = "UpdateSelectedSpecID();", id = "ddlSpec" })
+            </td>
+        </tr>
+
+    </table>
+
+    <br><br>
+    <span id="SelectButton"></span>
+
+    <script>
+    function UpdateDOM() {
+        var ddlSpec = document.getElementById("ddlSpec");
+        //alert(ddlSpec.innerHTML);
+        ddlEngineModel[0].setAttribute("value", "0");
+        //alert(ddlSpec.innerHTML);
+    }
+
+    function UpdateSelectedSpecID() {
+        var SelectSpecID = jQuery("#ddlSpec").val();
+        //alert("Selected SpecID = " + SelectSpecID);
+
+        jQuery.ajax(
+                            {
+                                url: "/AL/GetSpecsFor/",
+                                method: "POST",
+                                data: { SpecID: SelectSpecID }
+
+                            })
+            .done(function (SpecDDLHtmlResult) { jQuery("#SelectButton").html(SpecDDLHtmlResult); })
+                            .fail(function (jqXHR, textStatus, errorThrown)
+                            { alert(jqXHR + " " + textStatus + " " + errorThrown); });
+    }
+
+    </script>
+    </body>

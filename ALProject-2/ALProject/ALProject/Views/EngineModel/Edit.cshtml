@@ -1,0 +1,92 @@
+﻿@model ALProject.ViewModels.ModelSpec
+@{
+    ViewBag.Title = "EditModel";
+}
+
+<h2>EditModel</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(model => model.EngineViewModel.ModelCollection[0].ModelID)
+
+    <table>
+
+        <tr>
+
+            <td>@Html.DisplayNameFor(model => model.EngineViewModel.ModelCollection[0].ModelID)</td>
+
+
+            <td>@Html.DisplayFor(model => model.EngineViewModel.ModelCollection[0].ModelID)</td>
+        </tr>
+
+        <tr>
+
+            <td>@Html.DisplayNameFor(model => model.EngineViewModel.ModelCollection[0].ModelName)</td>
+
+
+            <td>@Html.TextBoxFor(model => model.EngineViewModel.ModelCollection[0].ModelName, new { required = "required" })</td>
+        </tr>
+
+    </table>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <input type="submit" value="Save Changes" />
+
+    //<input type="submit" value="Delete" name="Delete" />
+    
+    foreach (var item in Model.EngineViewModel.ModelCollection)
+    {
+    @Html.ActionLink("Delete", "Delete", new { id = item.ModelID })
+    }
+    <p></p>
+    <p></p>
+
+    <p>Spec:</p>
+    <table>
+
+
+        <tr>
+
+            <th width="150">@Html.DisplayNameFor(model => model.SpecViewModel.SpecCollection[0].ModelID)</th>
+            <th width="150">@Html.DisplayNameFor(model => model.SpecViewModel.SpecCollection[0].SpecName)</th>
+            <th width="150">@Html.DisplayNameFor(model => model.SpecViewModel.SpecCollection[0].SpecID)</th>
+
+            <th width="150">Links</th>
+
+
+
+
+        </tr>
+
+        @*use for each to generate this row once for every row in model*@
+
+
+
+        @foreach (var item in Model.SpecViewModel.SpecCollection)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.SpecID) </td>
+                <td>@Html.DisplayFor(modelItem => item.SpecName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ModelID)</td>
+                <td>
+                    @* @Html.ActionLink("Edit", "Edit", new { id = item.ModelID })
+                        | Details |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ModelID })*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ModelID , mode = "redirect"})
+                    | Details
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+    @Html.ActionLink("Back to List", "Index")
+
+}

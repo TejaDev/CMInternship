@@ -1,0 +1,80 @@
+﻿@model ALProject.Models.SpecModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.SpecCollection[0].SpecID)
+
+
+    <table>
+
+        <tr>
+
+
+
+            <td>@Html.DisplayNameFor(model => model.SpecCollection[0].ModelID)</td>
+
+
+            <td>@Html.DropDownList("ModelList")</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.SpecCollection[0].SpecName)</td>
+
+
+            <td>@Html.TextBoxFor(model => model.SpecCollection[0].SpecName, new { required = "required" })</td>
+        </tr>
+
+    </table>
+
+    <p></p>
+
+    <p></p>
+
+    @*<form>*@
+    <tr>
+        Position :
+
+        <input type="checkbox" name="Position0" value="Single"> Single
+        <input type="checkbox" name="Position1" value="Left"> Left
+        <input type="checkbox" name="Position2" value="Right"> Right
+        <input type="checkbox" name="Position3" value="Front"> Front
+        <input type="checkbox" name="Position4" value="Rear"> Rear
+    </tr>
+        <br>
+        @*</form>
+            <form>*@
+        <tr>
+            Status :
+
+            <input type="checkbox" name="Status1" value="New">   New
+            <input type="checkbox" name="Status2" value="Rebuilt"> Rebuilt
+        </tr>
+            @*</form>*@
+
+            <p></p>
+
+            <p></p>
+
+
+
+            <input type="submit" value="Save Changes" />
+            <p></p>
+            <p></p>
+    foreach (var item in Model.SpecCollection)
+    {
+        @Html.ActionLink("Delete", "Delete", new { id = item.SpecID })
+    }
+       <p></p>
+       <p></p>
+
+@Html.ActionLink("Back to List", "Index")
+
+
+
+}
+
